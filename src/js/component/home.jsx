@@ -8,11 +8,9 @@ const Home = () => {
 
 	function putApi() {
 		setEntrada([...entrada, { label: datos, done: false }]);
-		console.log(datos);
-		console.log(entrada);
 		let infoNecesaria = {
 			method: "PUT",
-			body: JSON.stringify(entrada),
+			body: JSON.stringify([...entrada, { label: datos, done: false }]),
 			headers: {
 				"Content-Type": "application/json"
 			}
@@ -75,6 +73,7 @@ const Home = () => {
 					onKeyDown={e => {
 						if (e.key === "Enter" && datos !== " ") {
 							putApi();
+							setDatos(" ");
 						}
 					}}
 					value={datos}
